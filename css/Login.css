@@ -1,0 +1,128 @@
+:root{ 
+    --richblack: #04151F; 
+    --darkslategray: #183A37;
+    --wheat: #EFD6AC;
+    --mahogany: #C44900;
+    --darkpurple: #432534;
+    --softblack : #04151fc0;
+    --softgreen: #183a37e7;
+}
+
+*{ 
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('../assets/bg.jpg');
+    background-position: center;
+    color: var(--wheat);
+}
+
+
+.form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--softgreen);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 600px;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"],
+.form select {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 10px;
+    margin-left: 15px;
+}
+
+.form input[type="checkbox"] {
+    margin-right: 10px;
+    vertical-align: middle;
+    size: 50px;
+}
+
+.form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="submit"] {
+    display: block;
+    width: 200px; /* Ubah lebar sesuai kebutuhan */
+    margin: 0 auto; /* Mengatur posisi tengah */
+    padding: 10px 20px; /* Padding untuk ruang di dalam tombol */
+    font-size: 16px;
+    text-align: center;
+    background-color: #4CAF50; /* Warna latar belakang tombol */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+input[type="submit"]:hover {
+    background-color: var(--mahogany); /* Warna latar belakang saat hover */
+}
+
+.title { 
+    text-align: center;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--softblack);
+    z-index: -1;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-container label {
+    margin-left: 10px; /* Jarak antara teks dan checkbox */
+    margin-top: 10px;
+}
+
+.logo {
+    text-align: center; 
+    margin-bottom: 10px; 
+}
+
+.logo img {
+    display: block; 
+    margin: 20px auto 0; /* Menambahkan margin top 20px */
+    max-width: 100%; 
+    height: auto; 
+}
+
+.signup-link {
+    color: var(--mahogany); 
+    display: block; 
+    text-align: center; 
+    margin: 0 auto;
+}
+
+.error-message {
+    background-color: #f8d7da; /* Warna latar belakang */
+    color: #721c24; /* Warna teks */
+    border: 1px solid #f5c6cb; /* Warna border */
+    border-radius: 5px; /* Membuat border menjadi agak melengkung */
+    padding: 10px; /* Ruang di dalam kotak pesan */
+    margin-bottom: 10px; /* Jarak antara pesan dengan elemen lain */
+}

@@ -1,0 +1,142 @@
+:root{ 
+    --richblack: #04151F; 
+    --darkslategray: #183A37;
+    --wheat: #EFD6AC;
+    --mahogany: #C44900;
+    --darkpurple: #432534;
+    --softblack : #04151fc0;
+    --softgreen: #183a37e7;
+}
+
+*{ 
+    font-family: 'Poppins', sans-serif;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('../assets/bg.jpg');
+    background-position: center;
+    color: var(--wheat);
+}
+
+
+.form {
+    margin-top: 150px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--softgreen);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 600px;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"],
+.form select {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 10px;
+    margin-left: 15px;
+}
+
+.form input[type="checkbox"] {
+    margin-right: 10px;
+    vertical-align: middle;
+    size: 80px;
+}
+
+.form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.title { 
+    text-align: center;
+}
+
+
+
+input[type="submit"] {
+    display: block;
+    width: 200px; 
+    margin: 20px auto 0; 
+    padding: 10px 20px; 
+    font-size: 16px;
+    text-align: center;
+    background-color: #4CAF50; 
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+input[type="submit"]:hover {
+    background-color: var(--mahogany);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--softblack);
+    z-index: -1;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-container label {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.logo {
+    text-align: center; 
+    margin-bottom: 10px; 
+}
+
+.logo img {
+    display: block; 
+    margin: 20px auto 0; 
+    width: 200px;
+    height: auto;
+}
+
+#Biografi {
+    width: 500px; 
+    height: 100px;
+}
+
+.login-link {
+    display: block;
+    text-align: center;
+    color: var(--mahogany); 
+    margin-top: 15px; 
+    text-decoration: none;
+}
+
+.login-link:hover {
+    color: var(--wheat);
+}
+
+.error-message {
+    background-color: #f8d7da; 
+    color: #721c24; 
+    border: 1px solid #f5c6cb; 
+    border-radius: 5px; 
+    padding: 10px; 
+    margin-bottom: 10px; 
+}

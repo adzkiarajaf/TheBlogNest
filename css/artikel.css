@@ -1,0 +1,199 @@
+:root{ 
+    --richblack: #04151F; 
+    --darkslategray: #183A37;
+    --wheat: #EFD6AC;
+    --mahogany: #C44900;
+    --darkpurple: #432534;
+    --softblack : #04151fc0;
+    --softgreen: #183a37e7;
+    --softpurple: #4325346e;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.navbar {
+    overflow: hidden;
+    background-color: var(--darkslategray);
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: var(--wheat);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+    border-radius: 20px;
+}
+
+.active {
+    background-color: var(--mahogany);
+    border-radius: 15px;
+}
+
+.dropdown {
+    float: right;
+    overflow: hidden;
+    margin-right: 30px;
+}
+
+.dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: var(--wheat);
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    z-index: 1;
+    border-radius: 5px;
+    right: 0; 
+}
+
+.dropdown-content a {
+    color: var(--darkslategray);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s;
+    margin-right: 30px;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--darkpurple);
+    color: var(--wheat);   
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.user-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.container {
+  max-width: 100%;
+  margin-left: 50px;
+  padding: 0 50px;
+}
+
+.container p {
+  width: 100%; 
+  max-width: 800px; 
+  padding: 20px; 
+  background-color: var(--wheat); 
+  color: var(--richblack); 
+  border-radius: 10px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  line-height: 1.6; 
+  font-size: 14px; 
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+}
+
+thead {
+  background-color: var(--darkslategray);
+  color: var(--wheat);
+  font-weight: bold;
+}
+
+thead th {
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #EFEFEF;
+}
+
+tbody tr:hover {
+  background-color: var(--wheat);
+}
+
+tbody td {
+  padding: 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.actions a {
+  display: inline-block; 
+  margin-right: 8px; 
+  text-decoration: none;
+  font-size: 20px; 
+  padding: 20px; 
+  border-radius: 10px; 
+}
+
+.actions a:hover {
+  color: #C44900;
+  background-color: var(--softpurple); 
+}
+
+.edit-icon {
+  color: var(--darkslategray);
+  margin-right: 2px;
+}
+
+.delete-icon {
+  color: var(--mahogany); 
+  margin-right: 2px;
+}
+
+.view-icon {
+  color: #0d57a7;
+  margin-right: 2px;
+}
+
+.user-photo {
+  display: block; 
+  margin: 0 auto; 
+  max-width: 100px; 
+  max-height: 100px; 
+}
+
+/* CSS untuk tombol */
+.button {
+  display: inline-block;
+  background-color: var(--mahogany); /* Warna latar belakang */
+  color: white; /* Warna teks */
+  padding: 10px 20px; /* Padding (atas, kanan, bawah, kiri) */
+  text-align: center; /* Posisi teks */
+  text-decoration: none; /* Hapus garis bawah */
+  border-radius: 5px; /* Border radius untuk tampilan bulat */
+  transition: background-color 0.3s; /* Transisi saat hover */
+  margin-top: 10px;
+}
+
+/* Efek hover pada tombol */
+.button:hover {
+  background-color: #45a049; /* Warna latar belakang saat dihover */
+}

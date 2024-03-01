@@ -1,0 +1,143 @@
+:root{ 
+    --richblack: #04151F; 
+    --darkslategray: #183A37;
+    --wheat: #EFD6AC;
+    --wheatsoft: #efd6ac7e;
+    --mahogany: #C44900;
+    --darkpurple: #432534;
+    --softblack : #04151fc0;
+    --softgreen: #183a37e7;
+    --softpurple: #4325346e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--wheatsoft);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    background-color: var(--darkslategray);
+    color: #fff;
+    padding: 20px 0;
+}
+
+header h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+nav {
+    display: flex;/* Mengatur agar konten berada di ujung kanan */
+    align-items: center; /* Mengatur agar konten berada di tengah secara vertikal */
+}
+
+nav ul.login, nav ul.register {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end; 
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: var(--wheat);
+    text-decoration: none;
+}
+
+section.featured-post {
+    padding: 50px 0;
+}
+
+.post {
+    margin-bottom: 40px;
+}
+
+.post img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.post h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.post p.post-meta {
+    color: var(--mahogany);
+    margin-bottom: 10px;
+}
+
+.post p {
+    color: var(--richblack);
+    margin-bottom: 20px;
+    font-weight: 350;
+}
+
+.read-more {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--mahogany);
+    color: var(--wheat);
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.read-more:hover {
+    background-color: var(--darkpurple);
+    color: var(--wheat);
+}
+
+footer {
+    background-color: var(--darkslategray);
+    color: var(--wheat);
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer p {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    color: #fff;
+    margin: 0 10px;
+    font-size: 20px;
+}
+
+button.login, button.register {
+    padding: 15px 24px;
+    font-size: 15px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+}
+
+button.login {
+    background-color: var(--darkpurple);
+}
+
+button.register {
+    background-color: var(--mahogany);
+}
+
+
+  
