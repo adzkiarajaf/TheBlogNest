@@ -4,27 +4,11 @@ include('function.php');
 
 $conn = connectToDatabase();
 
-$sql = "SELECT COUNT(*) AS total_artikel FROM artikel";
-$result = $conn->query($sql);
-
-if ($result) {
-    $row = $result->fetch_assoc();
-    $total_artikel = $row['total_artikel'];
-} else {
-    $total_artikel = 0;
-}
-
-$sql_recent_posts = "SELECT judul,tanggal FROM artikel ORDER BY tanggal DESC LIMIT 1";
-$result_recent_posts = $conn->query($sql_recent_posts);
-
-if ($result_recent_posts->num_rows > 0) {
-    $row_recent_post = $result_recent_posts->fetch_assoc();
-    $judul_recent_post = $row_recent_post['judul'];
-    $tanggal_recent_post = $row_recent_post['tanggal'];
-} else {
-    $judul_recent_post = "Tidak ada artikel terbaru";
-    $tanggal_recent_post = "";
-}
+$total_artikel = TotalArtikel();
+$recent_post_info = RecentPost();
+$judul_recent_post = $recent_post_info['judul'];
+$tanggal_recent_post = $recent_post_info['tanggal'];
+$total_users = TotalUsers(); 
 ?>
 
 <!DOCTYPE html>
@@ -42,6 +26,7 @@ if ($result_recent_posts->num_rows > 0) {
         <a href="artikel.php" >Artikel</a>
         <a href="kategori.php">Kategori</a>
         <a href="user.php">List Penulis</a>
+        <a href="../index.php">Home</a>
         </ul>
         
         <div class="dropdown">
@@ -64,14 +49,14 @@ if ($result_recent_posts->num_rows > 0) {
                     <p>Total Jumlah Artikel: <?= $total_artikel; ?> Artikel</p>
                 </div>
                 <div class="widget">
-                    <h2><i class="fa fa-newspaper" aria-hidden="true"></i> Recent Posts</h2>
+                    <h2><i class="fa fa-newspaper" aria-hidden="true"></i> Recent Post</h2>
                     <ul>
                         <li> <span><?= $tanggal_recent_post; ?></span> - <?= $judul_recent_post; ?></li>
                     </ul>
                 </div>
                 <div class="widget">
                     <h2><i class="fa fa-users" aria-hidden="true"></i> Users</h2>
-                    <p>Manage users and their roles.</p>
+                    <p>Total Jumlah User: <?= $total_users; ?> User</p>
                 </div>
             </div>
     </div>

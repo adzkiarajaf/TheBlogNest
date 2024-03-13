@@ -38,6 +38,8 @@ $conn->close();
             </div>
             <label for="NamaLengkap">Nama Lengkap</label>
             <input type="text" name="NamaLengkap" placeholder="Masukan Nama Lengkap" required>
+            <label for="username">Username</label>
+            <input type="text" name="username" placeholder="Masukan Username" required>
             <label for="email">Email</label>
             <input type="email" name="email" placeholder="Email" required>
             <label for="password">Password</label>

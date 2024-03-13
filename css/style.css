@@ -40,8 +40,8 @@ header h1 {
 }
 
 nav {
-    display: flex;/* Mengatur agar konten berada di ujung kanan */
-    align-items: center; /* Mengatur agar konten berada di tengah secara vertikal */
+    display: flex;
+    align-items: center;
 }
 
 nav ul.login, nav ul.register {
@@ -58,6 +58,34 @@ nav ul li {
 nav ul li a {
     color: var(--wheat);
     text-decoration: none;
+}
+
+.search-bar {
+    background-color: var(--darkpurple);
+    padding: 20px 0;
+    text-align: center;
+}
+
+.search-bar input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+    max-width: 100%;
+    margin-right: 10px;
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    background-color: var(--mahogany);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background-color: #45a049;
 }
 
 section.featured-post {
@@ -129,9 +157,11 @@ button.login, button.register {
     border-radius: 10px;
     color: #fff;
     cursor: pointer;
+    margin-right: 10px;
 }
 
 button.login {
+    margin-left: 300px;
     background-color: var(--darkpurple);
 }
 

@@ -4,19 +4,6 @@ include('function.php');
 
 $conn = connectToDatabase();
 
-// if(isset($_POST['addartikel'])) {
-//     if(create_artikel($_POST) > 0 ) { 
-//         echo "<script>  
-//                 alert('Artikel Berhasil Ditambahkan');
-//                 document.location.href = 'artikel.php';
-//               </script>";
-//     } else {
-//         echo "<script>  
-//                 alert('Artikel Gagal Ditambahkan');
-//                 document.location.href = 'artikel.php';
-//               </script>";
-//     }
-// }
 ?>
 
 <!DOCTYPE html>
@@ -34,6 +21,7 @@ $conn = connectToDatabase();
         <a href="artikel.php" class="active">Artikel</a>
         <a href="kategori.php">Kategori</a>
         <a href="user.php">User Management</a>
+        <a href="../index.php">Home</a>
         </ul>
         
         <div class="dropdown">
@@ -56,6 +44,20 @@ $conn = connectToDatabase();
                 <input type="text" name="judul" placeholder="Judul Artikel" required>
                 <label for="isiartikel">Isi Artikel</label>
                 <input type="text" name="isi_artikel" id="isi_artikel" placeholder="Isi Artikel" required>
+                <label for="kategori">Kategori</label>
+                <select name="kategori" id="kategori" required>
+                    <option value="">Pilih Kategori<i class="fa fa-caret-down"></i></option>
+                    <?php
+                    $sql_kategori = "SELECT * FROM kategori";
+                    $result_kategori = $conn->query($sql_kategori);
+
+                    if ($result_kategori->num_rows > 0) {
+                        while ($row_kategori = $result_kategori->fetch_assoc()) {
+                            echo "<option value='" . $row_kategori['id_kategori'] . "'>" . $row_kategori['nama_kategori'] . "</option>";
+                        }
+                    }
+                    ?>
+                </select>
                 <label for="foto">Foto Artikel</label>
                 <input type="file" id="foto" name="foto" placeholder="Foto Artikel">
                 <br>
@@ -70,7 +72,8 @@ $conn = connectToDatabase();
         $post = $_POST;
         $file = $_FILES['foto'];    
         $post['foto'] = $file;
-        if(create_artikel($post) > 0 ) { 
+        $kategori_id = $_POST['kategori']; 
+        if (create_artikel($post, $kategori_id) > 0) {
             echo "<script>  
                 Swal.fire({
                 icon: 'success',

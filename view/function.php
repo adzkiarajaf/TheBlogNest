@@ -90,13 +90,25 @@ function create_user($conn) {
     $error = ""; 
     
     $namaLengkap = $_POST['NamaLengkap'];
+    $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
+    $confirmPassword = $_POST['confirmPassword'];
     $jenisKelamin = $_POST['JenisKelamin'];
     $role = $_POST['Role'];
     $minatTopik = isset($_POST['MinatTopik']) ? $_POST['MinatTopik'] : NULL;
     $biografi = isset($_POST['Biografi']) ? $_POST['Biografi'] : NULL;
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    if ($password !== $confirmPassword) {
+        $error .= "<li>Konfirmasi password tidak sesuai dengan password yang dimasukkan.</li>";
+    }
+    
+    $checkUsernameQuery = "SELECT * FROM user WHERE username='$username'";
+    $result = $conn->query($checkUsernameQuery);
+    if ($result->num_rows > 0) {
+        $error .= "<li>Username sudah digunakan. Silakan gunakan username yang lain.</li>";
+    }
     
     $foto = upload_file();
     if  (!$foto){ 
@@ -104,8 +116,8 @@ function create_user($conn) {
     }
 
 
-    $sql = "INSERT INTO user (username, email, password, jeniskelamin, role, minat, bio, foto)
-            VALUES ('$namaLengkap', '$email', '$hashedPassword', '$jenisKelamin', '$role', '$minatTopik', '$biografi', '$foto')";
+    $sql = "INSERT INTO user (namalengkap, username, email, password, jeniskelamin, role, minat, bio, foto)
+            VALUES ('$namaLengkap', '$username','$email', '$hashedPassword', '$jenisKelamin', '$role', '$minatTopik', '$biografi', '$foto')";
 
     if ($conn->query($sql) === TRUE) {
         $error = "<p>User baru berhasil ditambahkan</p>";
@@ -148,18 +160,22 @@ function delete_user($id_user){
 
 
 // artikel
-function create_artikel($post){ 
+function create_artikel($post, $kategori_id) {
     global $conn; 
 
-    $judul = mysqli_real_escape_string($conn, $_POST['judul']); 
-    $isi = mysqli_real_escape_string($conn, $_POST['isi_artikel']); 
-    $foto = upload_file();
-    $penulis = 'username'; 
+    // Escape input data
+    $judul = mysqli_real_escape_string($conn, $post['judul']); 
+    $isi = mysqli_real_escape_string($conn, $post['isi_artikel']); 
+    $foto = upload_file(); 
+    $penulis = $_SESSION['user_username']; 
 
-    $query = "INSERT INTO artikel (judul, isi_artikel, tanggal, foto, penulis) VALUES ('$judul', '$isi', CURRENT_TIMESTAMP(), '$foto', '$penulis')";
+    
+    $query = "INSERT INTO artikel (judul, isi_artikel, tanggal, foto, penulis, id_kategori) VALUES ('$judul', '$isi', CURRENT_TIMESTAMP(), '$foto', '$penulis', '$kategori_id')";
 
+    
     mysqli_query($conn, $query);
 
+   
     return mysqli_affected_rows($conn);
 }
 
@@ -224,4 +240,44 @@ function delete_kategori($id_kategori) {
     return mysqli_affected_rows($conn);
 }
 // kategori
+
+//dashboard
+function TotalArtikel() {
+    global $conn; 
+    $sql = "SELECT COUNT(*) AS total_artikel FROM artikel";
+    $result = $conn->query($sql);
+
+    if ($result) {
+        $row = $result->fetch_assoc();
+        return $row['total_artikel'];
+    } else {
+        return 0;
+    }
+}
+
+function RecentPost() {
+    global $conn; 
+    $sql_recent_posts = "SELECT judul, tanggal FROM artikel ORDER BY tanggal DESC LIMIT 1";
+    $result_recent_posts = $conn->query($sql_recent_posts);
+
+    if ($result_recent_posts->num_rows > 0) {
+        $row_recent_post = $result_recent_posts->fetch_assoc();
+        return $row_recent_post;
+    } else {
+        return array("judul" => "Tidak ada artikel terbaru", "tanggal" => "");
+    }
+}
+
+function TotalUsers() {
+    global $conn; 
+    $sql = "SELECT COUNT(*) AS total_users FROM user"; 
+    $result = $conn->query($sql);
+
+    if ($result) {
+        $row = $result->fetch_assoc();
+        return $row['total_users'];
+    } else {
+        return 0;
+    }
+}
 ?>

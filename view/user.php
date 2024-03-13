@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'function.php';
 
 
@@ -25,11 +26,12 @@ $result = $conn->query($sql);
         <a href="artikel.php" >Artikel</a>
         <a href="kategori.php">Kategori</a>
         <a href="user.php" class="active">User Management</a>
+        <a href="../index.php">Home</a>
         </ul>
         
         <div class="dropdown">
             <button class="dropbtn">
-                <i class="fa fa-user"> User </i> 
+                <i class="fa fa-user"><?= $_SESSION['user_username']; ?></i> 
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">

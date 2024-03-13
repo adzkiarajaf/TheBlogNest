@@ -16,6 +16,7 @@ include('function.php');
         <ul><a href="admin.php" class="active">Dashboard</a>
         <a href="artikel.php">Artikel</a>
         <a href="kategori.php">Kategori</a>
+        <a href="../index.php">Home</a>
         </ul>
         <div class="dropdown">
             <button class="dropbtn">

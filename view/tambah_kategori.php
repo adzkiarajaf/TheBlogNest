@@ -22,6 +22,7 @@ $conn = connectToDatabase();
         <a href="artikel.php" >Artikel</a>
         <a href="kategori.php" class="active">Kategori</a>
         <a href="user.php">User Management</a>
+        <a href="../index.php">Home</a>
         </ul>
         
         <div class="dropdown">

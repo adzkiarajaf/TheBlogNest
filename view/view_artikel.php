@@ -32,7 +32,7 @@ if(isset($_POST['editartikel'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/addartikel.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <title>The Blog Nest | Edit Artikel</title>
+    <title>The Blog Nest | View Artikel</title>
 </head>
 <body>
     <div class="navbar">
@@ -66,10 +66,10 @@ if(isset($_POST['editartikel'])) {
                 <input type="text" name="isi_artikel" id="isi_artikel" value="<?= $artikel['isi_artikel']?>" required>
                 <label for="tanggal">Tanggal</label>
                 <input type="text" name="tanggal_artikel" id="tanggal_artikel" value="<?= $artikel['tanggal']?>" required disabled>
-                <label for="fotoProfil">Foto Artikel</label>
-                <input type="text" id="foto" name="foto" value="<?= $artikel['foto']?>" accept="image/*">
+                <label for="foto">Foto</label>
+                <img id="fotoPreview" src="../assets/<?= $artikel['foto'] ?>" alt="Foto Profil" width="500">
                 <br>
-                <input type="submit" value="Tambah Artikel" name="addartikel">
+                <!-- <input type="submit" value="Tambah Artikel" name="addartikel"> -->
             </form>
         </div>
     </div>

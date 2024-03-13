@@ -18,7 +18,7 @@ $kategori = mysqli_fetch_assoc($result);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/addartikel.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <title>The Blog Nest | Edit Kategori</title>
+    <title>The Blog Nest | View Kategori</title>
 </head>
 <body>
     <div class="navbar">
@@ -48,7 +48,7 @@ $kategori = mysqli_fetch_assoc($result);
                 </div> 
                 <label for="Kategori">Kategori</label>
                 <input type="text" name="nama_kategori" value="<?= $kategori['nama_kategori']?>" placeholder="Kategori" required>
-                <input type="submit" value="Edit Kategori" name="editkategori">
+                <!-- <input type="submit" value="Edit Kategori" name="editkategori"> -->
             </form>
         </div>
     </div>

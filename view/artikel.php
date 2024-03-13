@@ -5,7 +5,10 @@ include('function.php');
 $conn = connectToDatabase();
 
 
-$sql = "SELECT * FROM artikel ORDER BY id_artikel DESC";
+$sql = "SELECT a.*, k.nama_kategori 
+        FROM artikel a 
+        LEFT JOIN kategori k ON a.id_kategori = k.id_kategori 
+        ORDER BY a.id_artikel DESC";
 $result = $conn->query($sql);
 ?>
 
@@ -25,6 +28,7 @@ $result = $conn->query($sql);
         <a href="artikel.php" class="active">Artikel</a>
         <a href="kategori.php">Kategori</a>
         <a href="user.php">User Management</a>
+        <a href="../index.php">Home</a>
         </ul>
         
         <div class="dropdown">
@@ -53,6 +57,7 @@ $result = $conn->query($sql);
                 <th>Isi Artikel</th>
                 <th>Tanggal</th>
                 <th>Penulis</th>
+                <th>Kategori</th>
                 <th>Foto</th>
                 <th>Aksi</th>
             </tr>
@@ -69,6 +74,7 @@ $result = $conn->query($sql);
             <td><?= $row['isi_artikel']; ?></td>
             <td><?= date('d/m/y H:i' , strtotime($row['tanggal'])); ?></td>
             <td><?= $row['penulis']; ?></td>
+            <td><?= $row['nama_kategori']; ?></td>
             <td><img src="../assets/<?= $row['foto']; ?>" alt="Profil" class="foto_artikel"></td>
             <td class="actions">
                 <a href="view_artikel.php?id_artikel=<?= $row['id_artikel']; ?>" title="View"><i class="fas fa-eye view-icon"></i></a> 
