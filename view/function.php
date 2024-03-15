@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
 <?php
 function connectToDatabase()
 {
@@ -99,7 +107,7 @@ function create_user($conn) {
     $minatTopik = isset($_POST['MinatTopik']) ? $_POST['MinatTopik'] : NULL;
     $biografi = isset($_POST['Biografi']) ? $_POST['Biografi'] : NULL;
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
+    
     if ($password !== $confirmPassword) {
         $error .= "<li>Konfirmasi password tidak sesuai dengan password yang dimasukkan.</li>";
     }
@@ -112,15 +120,28 @@ function create_user($conn) {
     
     $foto = upload_file();
     if  (!$foto){ 
-        return false;
+        $error .= "<li>Gagal mengunggah foto. Silakan coba lagi.</li>";
+        return $error;
     }
 
+    if (!empty($error)) {
+        return $error;
+    }
 
     $sql = "INSERT INTO user (namalengkap, username, email, password, jeniskelamin, role, minat, bio, foto)
             VALUES ('$namaLengkap', '$username','$email', '$hashedPassword', '$jenisKelamin', '$role', '$minatTopik', '$biografi', '$foto')";
 
     if ($conn->query($sql) === TRUE) {
-        $error = "<p>User baru berhasil ditambahkan</p>";
+        echo "<script>
+        Swal.fire({
+            icon: 'success',
+            title: 'User berhasil ditambahkan!',
+            showConfirmButton: false,
+            timer: 1500
+        }).then(function() {
+            window.location.href = 'login.php';
+        });
+      </script>";
     } else {
         $error = "<p>Error: " . $sql . "<br></p>" . $conn->error;
     }
@@ -303,4 +324,23 @@ function PenulisArtikelData() {
     return $data;
 }
 
+function UsersOrderedById($conn) {
+    $sql = "SELECT * FROM user ORDER BY id DESC";
+    $result = $conn->query($sql);
+    
+    
+    if ($result === false) {
+        return false;
+    }
+    
+    
+    $users = [];
+    while ($row = $result->fetch_assoc()) {
+        $users[] = $row;
+    }
+    
+    return $users;
+}
 ?>
+</body>
+</html>

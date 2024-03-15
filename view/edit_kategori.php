@@ -6,6 +6,9 @@ $conn = connectToDatabase();
 
 $id_kategori = (int)$_GET['id_kategori'];
 
+$user_role = "Penulis"; 
+$_SESSION['user_role'] = $user_role;
+
 $kategori_query = "SELECT * FROM kategori WHERE id_kategori = $id_kategori";
 $result = mysqli_query($conn, $kategori_query);
 $kategori = mysqli_fetch_assoc($result);
@@ -22,9 +25,18 @@ $kategori = mysqli_fetch_assoc($result);
 </head>
 <body>
     <div class="navbar">
-        <ul><a href="admin.php">Dashboard</a>
-        <a href="artikel.php" >Artikel</a>
-        <a href="kategori.php" class="active">Kategori</a>
+    <?php if ($_SESSION['user_role'] == 'Penulis') : ?>
+                <ul>
+                    <a href="penulis.php" class="active">Dashboard</a>
+            <?php else : ?>
+                <ul>
+                    <a href="admin.php" class="active">Dashboard</a>
+            <?php endif; ?>
+                <a href="artikel.php" >Artikel</a>
+            <?php if ($_SESSION['user_role'] != 'Penulis') : ?>
+                <a href="kategori.php">Kategori</a>
+                <a href="user.php">User Management</a>
+            <?php endif; ?>tegori</a>
         <a href="user.php">User Management</a>
         <a href="../index.php">Home</a>
         </ul>

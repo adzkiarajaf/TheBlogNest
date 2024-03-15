@@ -43,7 +43,7 @@ $penulis_artikel_data = PenulisArtikelData();
         <ul><a href="admin.php" class="active">Dashboard</a>
         <a href="artikel.php" >Artikel</a>
         <a href="kategori.php">Kategori</a>
-        <a href="user.php">List Penulis</a>
+        <a href="user.php">User Management</a>
         <a href="../index.php">Home</a>
         </ul>
         

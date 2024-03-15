@@ -4,6 +4,7 @@ include('function.php');
 
 $conn = connectToDatabase();
 
+$userRole = $_SESSION['user_role'] ?? ''; 
 
 $sql = "SELECT a.*, k.nama_kategori 
         FROM artikel a 
@@ -24,9 +25,9 @@ $result = $conn->query($sql);
 </head>
 <body>
     <div class="navbar">
-        <ul><a href="admin.php">Dashboard</a>
-        <a href="artikel.php" class="active">Artikel</a>
-        <a href="kategori.php">Kategori</a>
+    <ul><a href="admin.php">Dashboard</a>
+        <a href="artikel.php" class="active" >Artikel</a>
+        <a href="kategori.php" >Kategori</a>
         <a href="user.php">User Management</a>
         <a href="../index.php">Home</a>
         </ul>
@@ -37,7 +38,7 @@ $result = $conn->query($sql);
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-                <a href="#">Profile</a>
+                <a href="view_user.php?id=<?= $row['id']; ?>">Profile</a>
                 <a href="logout.php">Logout</a>
             </div>
         </div>
@@ -45,10 +46,13 @@ $result = $conn->query($sql);
     <div class="container">
             <h1>List Artikel</h1>
             <p>Selamat datang di halaman List Artikel! Di sini, Anda dapat melihat daftar lengkap artikel yang terdaftar dalam sistem. Anda memiliki kontrol penuh untuk melakukan operasi Create, Read, Update, dan Delete (CRUD) terhadap artikel, yang memungkinkan Anda untuk mengelola artikel dengan mudah dan efisien. Silakan jelajahi daftar artikel di bawah ini dan gunakan fitur-fitur yang tersedia untuk mengelola informasi artikel dengan cepat dan tepat.</p>
-        <div>
-        <a href="tambah_artikel.php" class="button">Tambah Artikel</a>
-        </div>
-
+            <?php
+            if ($userRole == 'Admin') {
+                echo '<div><a href="tambah_artikel.php" class="button disabled">Tambah Artikel</a></div>';
+            } elseif ($userRole == 'Penulis') {
+                echo '<div><a href="tambah_artikel.php" class="button">Tambah Artikel</a></div>';
+            }
+            ?>
         <table class="user-table">
         <thead>
             <tr>

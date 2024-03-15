@@ -33,6 +33,8 @@ $conn->close();
                 <?php
                 if ($error) {
                     echo "<ul>$error</ul>";
+                } else { 
+                    
                 }
                 ?>
             </div>

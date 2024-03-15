@@ -6,6 +6,9 @@ $conn = connectToDatabase();
 
 $id_artikel = (int)$_GET['id_artikel'];
 
+$user_role = "Penulis"; 
+$_SESSION['user_role'] = $user_role;
+
 $update_view_query = "UPDATE artikel SET view = view + 1 WHERE id_artikel = $id_artikel";
 mysqli_query($conn, $update_view_query);
 
@@ -26,10 +29,18 @@ $artikel = mysqli_fetch_assoc($result);
 </head>
 <body>
     <div class="navbar">
-        <ul><a href="admin.php">Dashboard</a>
-        <a href="artikel.php" class="active">Artikel</a>
-        <a href="kategori.php">Kategori</a>
-        <a href="user.php">User Management</a>
+    <?php if ($_SESSION['user_role'] == 'Penulis') : ?>
+                <ul>
+                    <a href="penulis.php" class="active">Dashboard</a>
+            <?php else : ?>
+                <ul>
+                    <a href="admin.php" class="active">Dashboard</a>
+            <?php endif; ?>
+                <a href="artikel.php" >Artikel</a>
+            <?php if ($_SESSION['user_role'] != 'Penulis') : ?>
+                <a href="kategori.php">Kategori</a>
+                <a href="user.php">User Management</a>
+            <?php endif; ?>
         <a href="../index.php">Home</a>
         </ul>
         
