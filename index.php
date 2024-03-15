@@ -20,6 +20,13 @@ $result_artikel = $conn->query($sql_artikel);
 
 $sql_kategori = "SELECT * FROM kategori";
 $result_kategori = $conn->query($sql_kategori);
+
+
+$sql_berita_terbaru = "SELECT * FROM artikel ORDER BY tanggal DESC LIMIT 5";
+$result_berita_terbaru = $conn->query($sql_berita_terbaru);
+
+$sql_berita_terpopuler = "SELECT * FROM artikel ORDER BY view DESC LIMIT 5";
+$result_berita_terpopuler = $conn->query($sql_berita_terpopuler);
 ?>
 
 
@@ -62,11 +69,43 @@ $result_kategori = $conn->query($sql_kategori);
         </div>
     </section>
 
+    <aside class="sidebar">
+            <div class="widget">
+                <h3>Berita Terbaru</h3>
+                <ul>
+                    <?php
+                    if ($result_berita_terbaru->num_rows > 0) {
+                        while ($row = $result_berita_terbaru->fetch_assoc()) {
+                            echo "<li><a href='view/view_artikel.php?id_artikel=" . $row['id_artikel'] . "'>" . $row['judul'] . "</a></li>";
+                        }
+                    } else {
+                        echo "<li>Belum ada berita terbaru.</li>";
+                    }
+                    ?>
+                </ul>
+            </div>
+            <div class="widget">
+                <h3>Berita Terpopuler</h3>
+                <ul>
+                    <?php
+                    if ($result_berita_terpopuler->num_rows > 0) {
+                        while ($row = $result_berita_terpopuler->fetch_assoc()) {
+                            echo "<li><a href='view/view_artikel.php?id_artikel=" . $row['id_artikel'] . "'>" . $row['judul'] . "</a></li>";
+                        }
+                    } else {
+                        echo "<li>Belum ada berita terpopuler.</li>";
+                    }
+                    ?>
+                </ul>
+            </div>
+    </aside>
+
     <section class="featured-post">
         <div class="container">
             <h2>Featured Post</h2>
             <br>
             <?php
+            $max_characters = 250;
 
             if ($result_artikel->num_rows > 0) {
                 while ($row = $result_artikel->fetch_assoc()) {
@@ -75,19 +114,24 @@ $result_kategori = $conn->query($sql_kategori);
                     echo "<div class='post-content'>";
                     echo "<h3>" . $row['judul'] . "</h3>";
                     echo "<p class='post-meta'>Posted by " . $row['penulis'] . " | " . date('d/m/y H:i', strtotime($row['tanggal'])) . "</p>";
-                    echo "<p>" . $row['isi_artikel'] . "</p>";
-                    echo "<a href='/view/view_artikel.php' class='read-more'>Selengkapnya <i class='fas fa-arrow-right'></i></a>";
+                    echo "<p class='post-meti'>Jumlah View " . $row['view'] . "</p>";
+                    
+                    $short_content = substr($row['isi_artikel'], 0, $max_characters);
+                    $last_space = strrpos($short_content, ' ');
+                    $short_content = substr($short_content, 0, $last_space) . '...';
+                    echo "<p>" . $short_content . "</p>";
+                    echo "<a href='view/view_artikel.php?id_artikel=" . $row['id_artikel'] . "' class='read-more'>Selengkapnya <i class='fas fa-arrow-right'></i></a>";
                     echo "</div>";
                     echo "</div>";
                 }
-            } else {
-                echo "Belum Terdapat Artikel Tentang Kategori ini.";
-            }
+                } else {
+                    echo "Belum Terdapat Artikel Tentang Kategori ini.";
+                }
             $conn->close();
             ?>
         </div>
     </section>
-
+    
     <footer>
         <div class="container">
             <p>&copy; 2024 The Blog Nest. All Rights Reserved.</p>

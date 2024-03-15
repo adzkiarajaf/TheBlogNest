@@ -6,23 +6,13 @@ $conn = connectToDatabase();
 
 $id_artikel = (int)$_GET['id_artikel'];
 
+$update_view_query = "UPDATE artikel SET view = view + 1 WHERE id_artikel = $id_artikel";
+mysqli_query($conn, $update_view_query);
+
 $artikel_query = "SELECT * FROM artikel WHERE id_artikel = $id_artikel";
 $result = mysqli_query($conn, $artikel_query);
 $artikel = mysqli_fetch_assoc($result);
 
-if(isset($_POST['editartikel'])) {
-    if(edit_artikel($_POST) > 0 ) { 
-        echo "<script>  
-                alert('Artikel Berhasil Diubah');
-                document.location.href = 'artikel.php';
-              </script>";
-    } else {
-        echo "<script>  
-                alert('Artikel Gagal Diubah');
-                document.location.href = 'artikel.php';
-              </script>";
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +20,7 @@ if(isset($_POST['editartikel'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/addartikel.css">
+    <link rel="stylesheet" href="../css/viewartikel.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <title>The Blog Nest | View Artikel</title>
 </head>
@@ -54,24 +44,22 @@ if(isset($_POST['editartikel'])) {
             </div>
         </div>
     </div>
+    
     <div class="container">
-        <div class="form">
-            <form action="" method="post" id="addartikel" enctype="multipart/form-data">
-                <input type="hidden" class="type" name="id_artikel" value="<?= $artikel['id_artikel']?>">
-                <h1 class="title">Edit Artikel</h1>
-                </div> 
-                <label for="judulartikel">Judul Artikel</label>
-                <input type="text" name="judul"  value="<?= $artikel['judul']?>" required>
-                <label for="isiartikel">Isi Artikel</label>
-                <input type="text" name="isi_artikel" id="isi_artikel" value="<?= $artikel['isi_artikel']?>" required>
-                <label for="tanggal">Tanggal</label>
-                <input type="text" name="tanggal_artikel" id="tanggal_artikel" value="<?= $artikel['tanggal']?>" required disabled>
-                <label for="foto">Foto</label>
-                <img id="fotoPreview" src="../assets/<?= $artikel['foto'] ?>" alt="Foto Profil" width="500">
-                <br>
-                <!-- <input type="submit" value="Tambah Artikel" name="addartikel"> -->
-            </form>
+    <section class="featured-post">
+        <div class="container">
+            <h1 class="title">View Artikel</h1>
+            <br>
+            <div class='post'>
+            <img src="../assets/<?= $artikel['foto'] ?>" alt='Featured Post Image'>
+            <div class='post-content'>
+            <h3> <?= $artikel['judul']?> </h3>
+            <p class='post-meta'>Posted by  <?= $artikel['penulis']?>   <?= date('d/m/y H:i', strtotime ($artikel['tanggal']))?> </p>
+            <p> <?= $artikel['isi_artikel']?> </p>
+            </div>
+            </div>
         </div>
+    </section>
     </div>
 </body>
 </html>

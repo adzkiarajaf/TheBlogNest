@@ -1,13 +1,12 @@
-:root {
-  --richblack: #04151F;
-  --darkslategray: #183A37;
-  --wheat: #EFD6AC;
-  --mahogany: #C44900;
-  --darkpurple: #432534;
-  --softblack: #04151fc0;
-  --softgreen: #183a37e7;
-  --softblack : #04151fc0;
-  --softpurple: #4325346e;
+:root{ 
+    --richblack: #04151F; 
+    --darkslategray: #183A37;
+    --wheat: #EFD6AC;
+    --mahogany: #C44900;
+    --darkpurple: #432534;
+    --softblack : #04151fc0;
+    --softgreen: #183a37e7;
+    --softpurple: #4325346e;
 }
 
 body {
@@ -88,71 +87,49 @@ body {
   display: block;
 }
 
-.user-icon {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  margin-right: 10px;
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
 .container {
-  max-width: 2000px;
-  margin: 0 auto;
-  padding: 0 50px;
+  max-width: 1200px;
+  margin: 20px auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.dashboard-widgets {
-  display: flex;
-  flex-wrap: wrap; 
-  justify-content: space-between; 
-}
-
-.widget {
-  width: calc(30% - 5px); 
-  background-color: var(--wheat); 
-  padding: 20px; 
-  border-radius: 8px; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+.title {
+  text-align: center;
   margin-bottom: 20px;
 }
 
-.widget h2 {
-  font-size: 20px; 
-  margin-bottom: 10px; 
-  font-weight: normal;
+.post {
+  margin-bottom: 30px;
 }
 
-.widget p {
-  font-size: 25px; 
-  color: var(--richblack);
-  font-weight: bolder;
+.post img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  margin-left: 250px;
 }
 
-.widget ul {
-  list-style-type: none; 
-  padding: 0; 
-}
-
-.widget ul li {
+.post h3 {
+  font-size: 24px;
   margin-bottom: 10px;
+}
+
+.post p.post-meta {
   color: var(--mahogany);
-  font-weight: bold; 
+  margin-bottom: 10px;
 }
 
-.widget ul li span {
-  color: var(--darkpurple);
-  font-size: 14px;
-  margin-left: 5px; 
-}
-
-
-.widget.chart {
-  width: calc(30% - 5px);  
-  background-color: var(--softgreen);
-  padding: 50px; 
-  border-radius: 8px; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+.post p {
+  color: var(--richblack);
   margin-bottom: 20px;
-  width: 50%;
-  height: 500px;
+  line-height: 1.6;
 }
+

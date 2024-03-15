@@ -280,4 +280,27 @@ function TotalUsers() {
         return 0;
     }
 }
+
+function PenulisArtikelData() {
+    $conn = connectToDatabase();
+
+    
+    $sql_penulis_artikel = "SELECT penulis, COUNT(*) AS jumlah_artikel FROM artikel WHERE penulis IS NOT NULL GROUP BY penulis";
+    $result_penulis_artikel = $conn->query($sql_penulis_artikel);
+
+    $data = [];
+
+    
+    if ($result_penulis_artikel->num_rows > 0) {
+        while ($row = $result_penulis_artikel->fetch_assoc()) {
+            $data[] = [
+                'penulis' => $row['penulis'],
+                'jumlah_artikel' => $row['jumlah_artikel']
+            ];
+        }
+    }
+
+    return $data;
+}
+
 ?>
